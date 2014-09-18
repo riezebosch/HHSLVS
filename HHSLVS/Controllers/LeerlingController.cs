@@ -26,5 +26,24 @@ namespace HHSLVS.Controllers
                     l => l.Id == id);
             return View(leerling);
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Leerling leerling)
+        {
+            _context.Leerlingen.Add(leerling);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Leerlingen()
+        {
+            return Json(_context.Leerlingen);
+        }
     }
 }
